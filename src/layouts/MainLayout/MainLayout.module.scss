@@ -1,0 +1,21 @@
+.container {
+    width: 100%;
+    display: flex;
+    position: relative;
+    background-color: rgb(245, 245, 245);
+
+    .sideBar {
+        width: 23%;
+    }
+
+    .header {
+        position: relative;
+        min-height: 15vh;
+        margin: 20px 0 0;
+    }
+
+    .content {
+        width: 75vw;
+
+    }
+}

@@ -1,0 +1,45 @@
+.container {
+    display: flex;
+    width: 72vw;
+    position: fixed;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 2px 1px 2px rgb(205, 205, 205);
+    z-index: 1;
+
+    .left {
+        .title {
+            color: rgb(147, 147, 147);
+            margin-bottom: 10px;
+        }
+
+        .description {
+            font-weight: bolder;
+        }
+    }
+
+    .right {
+        display: flex;
+        align-items: center;
+        color: rgb(78, 90, 116);
+
+        div {
+            padding: 10px;
+            margin: 0 5px;
+            border-radius: 10px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: rgb(196, 196, 196);
+            }
+        }
+
+        .signOut {
+            .icon {
+                margin-right: 10px;
+            }
+        }
+    }
+}
