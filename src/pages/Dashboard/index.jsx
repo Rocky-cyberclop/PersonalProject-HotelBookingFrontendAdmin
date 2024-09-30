@@ -67,10 +67,10 @@ function Dashboard() {
                     <div className={style.completion}>
                         <div className={style.number}>{params.row.completion}%</div>
                         <div className={style.bar}>
-                            <div 
-                            className={`${style.progress} 
+                            <div
+                                className={`${style.progress} 
                             ${(params.row.completion === 100 && style.completed) || style.inProgress}`}
-                            style={{width: `${params.row.completion}%`}}></div>
+                                style={{ width: `${params.row.completion}%` }}></div>
                         </div>
                     </div>
                 </div>
@@ -153,7 +153,7 @@ function Dashboard() {
         series: [
             {
                 name: "Views",
-                data: [50, 20, 10, 22, 50, 10, 40],
+                data: [50, 20, 10, 22, 50, 10, 40, 40],
             },
         ],
         options: {
@@ -167,7 +167,7 @@ function Dashboard() {
             },
             xaxis: {
                 ...chartsConfig.xaxis,
-                categories: ["M", "T", "W", "T", "F", "S", "S"],
+                categories: ["M", "T", "W", "T", "F", "S", "S", "S", "A"],
             },
         },
     };

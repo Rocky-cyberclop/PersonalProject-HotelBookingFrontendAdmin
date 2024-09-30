@@ -1,7 +1,7 @@
 import style from './SideBar.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faChartColumn, faTable, faIcons } from '@fortawesome/free-solid-svg-icons';
-import logo from '../../../assets/images/logo.png'
+import logo from '../../../assets/images/logo.jpg'
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
