@@ -1,6 +1,7 @@
 import style from './SideBar.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faChartColumn, faTable, faIcons } from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faChartColumn, faTable, faBook, faBuilding, faReceipt, faMoneyBillTrendUp } from '@fortawesome/free-solid-svg-icons';
+import { faBuilding as faBuildingRegular } from '@fortawesome/free-regular-svg-icons';
 import logo from '../../../assets/images/logo.jpg'
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
@@ -35,7 +36,7 @@ function SideBar() {
                     </Link>
                 </div>
                 <div className={style.item}>
-                    <Link to={'/management'}
+                    <Link
                         className={`${style.wrapper} ${chosen === 2 && style.chosen}`}
                         onClick={() => { handleOpenMenu('management'); handleChosen(2) }}>
                         <FontAwesomeIcon icon={faTable} className={style.icon} />
@@ -43,27 +44,28 @@ function SideBar() {
                     </Link>
                     {menu === 'management' &&
                         <div className={style.menu}>
-                            <div
+                            <Link to={'/management/booking'}
                                 className={`${style.wrapper} ${chosen === 3 && style.chosen}`}
                                 onClick={() => { handleChosen(3) }}>
-                                <FontAwesomeIcon icon={faIcons} className={style.icon} />
-                                <div className={style.text}>Some string</div>
-                            </div>
-                            <div
+                                <FontAwesomeIcon icon={faBook} className={style.icon} />
+                                <div className={style.text}>Bookings</div>
+                            </Link>
+                            <Link to={'/management/rooms'}
                                 className={`${style.wrapper} ${chosen === 4 && style.chosen}`}
                                 onClick={() => { handleChosen(4) }}>
-                                <FontAwesomeIcon icon={faIcons} className={style.icon} />
-                                <div className={style.text}>Some string</div>
-                            </div><div
+                                <FontAwesomeIcon icon={faBuilding} className={style.icon} />
+                                <div className={style.text}>Rooms</div>
+                            </Link>
+                            <Link to={'/management/roomTypes'}
                                 className={`${style.wrapper} ${chosen === 5 && style.chosen}`}
                                 onClick={() => { handleChosen(5) }}>
-                                <FontAwesomeIcon icon={faIcons} className={style.icon} />
-                                <div className={style.text}>Some string</div>
-                            </div>
+                                <FontAwesomeIcon icon={faBuildingRegular} className={style.icon} />
+                                <div className={style.text}>Room types</div>
+                            </Link>
                         </div>}
                 </div>
                 <div className={style.item}>
-                    <Link to={'/statistic'}
+                    <Link
                         className={`${style.wrapper} ${chosen === 6 && style.chosen}`}
                         onClick={() => { handleOpenMenu('statistic'); handleChosen(6) }}>
                         <FontAwesomeIcon icon={faChartColumn} className={style.icon} />
@@ -71,22 +73,18 @@ function SideBar() {
                     </Link>
                     {menu === 'statistic' &&
                         <div className={style.menu}>
-                            <div
+                            <Link to={'/statistic/profit'}
                                 className={`${style.wrapper} ${chosen === 7 && style.chosen}`}
                                 onClick={() => { handleChosen(7) }}>
-                                <FontAwesomeIcon icon={faIcons} className={style.icon} />
-                                <div className={style.text}>Some string</div>
-                            </div><div
+                                <FontAwesomeIcon icon={faMoneyBillTrendUp} className={style.icon} />
+                                <div className={style.text}>Profit</div>
+                            </Link>
+                            <Link to={'/statistic/reservation'}
                                 className={`${style.wrapper} ${chosen === 8 && style.chosen}`}
                                 onClick={() => { handleChosen(8) }}>
-                                <FontAwesomeIcon icon={faIcons} className={style.icon} />
-                                <div className={style.text}>Some string</div>
-                            </div><div
-                                className={`${style.wrapper} ${chosen === 9 && style.chosen}`}
-                                onClick={() => { handleChosen(9) }}>
-                                <FontAwesomeIcon icon={faIcons} className={style.icon} />
-                                <div className={style.text}>Some string</div>
-                            </div>
+                                <FontAwesomeIcon icon={faReceipt} className={style.icon} />
+                                <div className={style.text}>Reservations</div>
+                            </Link>
                         </div>}
                 </div>
             </div>

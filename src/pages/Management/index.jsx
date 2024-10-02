@@ -1,8 +1,6 @@
 import style from './Management.module.scss'
 
-function Management(){
-
-
+function Management() {
 
     return (
         <div>

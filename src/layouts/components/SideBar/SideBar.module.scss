@@ -1,77 +1,78 @@
 .container {
-    display: block;
-    min-width: 300px;
-    max-height: 90vh;
-    position: fixed;
-    margin: 20px;
-    // border: 1px solid rgb(181, 180, 180);
-    border-radius: 10px;
-    // background-color: rgb(150, 150, 150);
-    background-color: rgb(255, 255, 255);
-    overflow: hidden;
+  display: block;
+  min-width: 300px;
+  max-height: 90vh;
+  position: fixed;
+  margin: 20px;
+  // border: 1px solid rgb(181, 180, 180);
+  border-radius: 10px;
+  // background-color: rgb(150, 150, 150);
+  background-color: rgb(255, 255, 255);
+  overflow: hidden;
 
-    .header {
-        width: 100%;
-        text-align: center;
-        margin: 30px 0 50px;
-        font-size: 20px;
-        font-weight: bolder;
-    }
+  .header {
+    width: 100%;
+    text-align: center;
+    margin: 30px 0 50px;
+    font-size: 20px;
+    font-weight: bolder;
+  }
 
-    .body {
-        width: 100%;
+  .body {
+    width: 100%;
 
-        .item {
-            width: 100%;
-            margin: 10px 0;
+    .item {
+      width: 100%;
+      margin: 10px 0;
 
-            .wrapper {
-                display: flex;
-                width: 80%;
-                margin: auto;
-                padding: 10px;
-                cursor: pointer;
-                border-radius: 10px;
-                text-decoration: none;
-                color: black;
+      .wrapper {
+        display: flex;
+        width: 80%;
+        margin: 10px auto;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 10px;
+        text-decoration: none;
+        color: black;
+        border: 0;
 
-                &:hover {
-                    background-color: rgb(235, 234, 234);
-                }
-
-                .icon {
-                    font-size: 20px;
-                }
-
-                .text {
-                    display: flex;
-                    align-items: center;
-                    font-size: 15px;
-                    font-weight: bold;
-                    margin-left: 30px;
-                }
-            }
-
-            .chosen {
-                background-color: black;
-                color: aliceblue;
-
-                &:hover {
-                    background-color: black;
-                    color: aliceblue;
-                }
-            }
-
-            .menu {
-                .wrapper {
-
-                    .icon {
-                        margin-left: 20px;
-                    }
-                }
-            }
+        &:hover {
+          background-color: rgb(235, 234, 234);
         }
-    }
 
-    .footer {}
+        .icon {
+          font-size: 20px;
+        }
+
+        .text {
+          display: flex;
+          align-items: center;
+          font-size: 15px;
+          font-weight: bold;
+          margin-left: 30px;
+        }
+      }
+
+      .chosen {
+        background-color: black;
+        color: aliceblue;
+
+        &:hover {
+          background-color: black;
+          color: aliceblue;
+        }
+      }
+
+      .menu {
+        .wrapper {
+          .icon {
+            margin-left: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  .footer {
+  }
 }
