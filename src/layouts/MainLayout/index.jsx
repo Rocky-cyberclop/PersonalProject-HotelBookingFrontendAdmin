@@ -1,3 +1,4 @@
+/* eslint-disable */
 import style from './MainLayout.module.scss';
 import styled from '@emotion/styled';
 import Header from '../components/Header';

@@ -1,0 +1,25 @@
+.table {
+  margin-top: 20px;
+  padding-top: 50px;
+  position: relative;
+  .tableHeader {
+    border-radius: 10px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    color: aliceblue;
+    position: absolute;
+    top: -3%;
+    left: 2.5%;
+    width: 95%;
+    background-color: rgb(49, 49, 49);
+    .tableHeaderText {
+      margin-left: 50px;
+      font-size: large;
+      font-weight: bolder;
+    }
+  }
+  .tableContent {
+    padding-top: 30px;
+  }
+}

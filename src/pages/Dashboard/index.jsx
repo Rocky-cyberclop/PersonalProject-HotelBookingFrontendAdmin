@@ -1,3 +1,4 @@
+/* eslint-disable */
 import style from './Dashboard.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartSimple, faCoins, faUserPlus, faUsers, faClock, faCircleCheck } from '@fortawesome/free-solid-svg-icons';

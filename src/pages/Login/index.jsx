@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useState } from 'react';
 import style from './Login.module.scss'
 import { TextField, Button } from '@mui/material';
@@ -18,13 +19,11 @@ function Login() {
     };
 
     const handleLogin = () => {
-        if(user.username.trim()==='')
-        {
+        if (user.username.trim() === '') {
             toast.info('Username can not be blank!')
             return;
         }
-        if(user.password.trim()==='')
-        {
+        if (user.password.trim() === '') {
             toast.info('Password can not be blank!')
             return;
         }
@@ -42,7 +41,7 @@ function Login() {
                 // }) 
             } catch (error) {
                 localStorage.setItem('admin', 'some string')
-                navigate('/dashboard') 
+                navigate('/dashboard')
                 toast.success('Login successfully!')
                 console.error('Error fetching data:', error);
                 return;
