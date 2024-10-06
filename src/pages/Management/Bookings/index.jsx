@@ -8,25 +8,97 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import style from '../Management.module.scss'
+import { useState, useEffect, useRef } from 'react';
+import BasicModal from '../../../components/Modal';
+import dayjs from 'dayjs';
+import { Pagination } from '@mui/material';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
 
 export default function BookingManagement() {
+    const [data, setData] = useState([])
+    const [condition, setCondition] = useState(
+        {
+            from: null,
+            to: null,
+            page: 1,
+            pageSide: 10,
+            totalPage: 10
+        }
+    )
+    useEffect(() => {
+        if (condition.from && condition.to) {
+            setData([...[
+                {
+                    email: 'rocky@gmail.com',
+                    come: '01-02-2024',
+                    go: '01-02-2024',
+                    total: 4,
+                    created: '01-02-2024',
+                    id: 1
+                },
+                {
+                    email: 'rocky@gmail.com',
+                    come: '01-02-2024',
+                    go: '01-02-2024',
+                    total: 4,
+                    created: '01-02-2024',
+                    id: 2
+                },
+                {
+                    email: 'rocky@gmail.com',
+                    come: '01-02-2024',
+                    go: '01-02-2024',
+                    total: 4,
+                    created: '01-02-2024',
+                    id: 3
+                },
+                {
+                    email: 'rocky@gmail.com',
+                    come: '01-02-2024',
+                    go: '01-02-2024',
+                    total: 4,
+                    created: '01-02-2024',
+                    id: 4
+                },
+                {
+                    email: 'rocky@gmail.com',
+                    come: '01-02-2024',
+                    go: '01-02-2024',
+                    total: 4,
+                    created: '01-02-2024',
+                    id: 5
+                },
+            ]])
+        }
+    }, [condition.from, condition.to, condition.page])
+
+    const handleDateStart = (e) => {
+        setCondition(pre => ({ ...pre, from: dayjs(e).format('DD/MM/YYYY') }))
+    }
+
+    const handleDateEnd = (e) => {
+        setCondition(pre => ({ ...pre, to: dayjs(e).format('DD/MM/YYYY') }))
+    }
 
     return (
         <div className={style.table}>
             <div className={style.tableHeader}>
                 <div className={style.tableHeaderText}>Booking List Table</div>
+                <div className={style.dateRange}>
+                    <div className={style.calendar}>
+                        <LocalizationProvider
+                            dateAdapter={AdapterDayjs}>
+                            <DemoContainer components={['DatePicker']}>
+                                <DatePicker label="Pick a date start" onChange={handleDateStart} />
+                                <DatePicker label="Pick a date end" onChange={handleDateEnd} />
+                            </DemoContainer>
+                        </LocalizationProvider>
+                    </div>
+                </div>
             </div>
             <TableContainer component={Paper} className={style.tableContent}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -37,25 +109,32 @@ export default function BookingManagement() {
                             <TableCell align="right">Date go</TableCell>
                             <TableCell align="right">Total days</TableCell>
                             <TableCell align="right">Created at</TableCell>
+                            <TableCell align="right">Action</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => (
+                        {data?.map((row) => (
                             <TableRow
-                                key={row.name}
+                                key={row.id}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                                 <TableCell component="th" scope="row">
-                                    {row.name}
+                                    {row.email}
                                 </TableCell>
-                                <TableCell align="right">{row.calories}</TableCell>
-                                <TableCell align="right">{row.fat}</TableCell>
-                                <TableCell align="right">{row.carbs}</TableCell>
-                                <TableCell align="right">{row.protein}</TableCell>
+                                <TableCell align="right">{row.come}</TableCell>
+                                <TableCell align="right">{row.go}</TableCell>
+                                <TableCell align="right">{row.total}</TableCell>
+                                <TableCell align="right">{row.created}</TableCell>
+                                <TableCell align="right">
+                                    <BasicModal id={row.id} />
+                                </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
                 </Table>
+                <Pagination onChange={(_, value) => {
+                    setCondition(pre => ({ ...pre, page: value }))
+                }} count={condition.totalPage} shape="rounded" className={style.pagination} />
             </TableContainer>
         </div>
 

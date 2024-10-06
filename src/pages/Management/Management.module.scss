@@ -6,20 +6,37 @@
     border-radius: 10px;
     height: 80px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    color: aliceblue;
     position: absolute;
     top: -3%;
     left: 2.5%;
     width: 95%;
-    background-color: rgb(49, 49, 49);
+    background-color: rgb(152, 152, 152);
     .tableHeaderText {
       margin-left: 50px;
       font-size: large;
       font-weight: bolder;
     }
+    .dateRange {
+      position: relative;
+      .calendar {
+        border-radius: 10px;
+        padding: 10px;
+        .datePicker {
+          background-color: aliceblue;
+        }
+      }
+      .calendarText {
+        margin-left: 10px;
+      }
+    }
   }
   .tableContent {
     padding-top: 30px;
   }
+}
+
+.pagination {
+  padding: 20px 0;
 }
