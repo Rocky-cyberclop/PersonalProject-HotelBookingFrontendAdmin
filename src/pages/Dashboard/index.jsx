@@ -336,7 +336,7 @@ function Dashboard() {
                     <div className={style.footer}><FontAwesomeIcon icon={faClock} /> just updated</div>
                 </div>
             </div>
-            <div className={style.tableWrapper}>
+            {/* <div className={style.tableWrapper}>
                 <div className={style.header}>
                     <div className={style.title}>
                         Projects
@@ -355,7 +355,7 @@ function Dashboard() {
                         },
                     }}
                 />
-            </div>
+            </div> */}
             <div className={style.offset}>
 
             </div>

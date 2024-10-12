@@ -1,7 +1,7 @@
 import style from './SideBar.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faChartColumn, faTable, faBook, faBuilding, faReceipt, faMoneyBillTrendUp } from '@fortawesome/free-solid-svg-icons';
-import { faBuilding as faBuildingRegular } from '@fortawesome/free-regular-svg-icons';
+import { faBuilding as faBuildingRegular, faUser } from '@fortawesome/free-regular-svg-icons';
 import logo from '../../../assets/images/logo.jpg'
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
@@ -50,17 +50,11 @@ function SideBar() {
                                 <FontAwesomeIcon icon={faBook} className={style.icon} />
                                 <div className={style.text}>Bookings</div>
                             </Link>
-                            <Link to={'/management/rooms'}
+                            <Link to={'/management/users'}
                                 className={`${style.wrapper} ${chosen === 4 && style.chosen}`}
                                 onClick={() => { handleChosen(4) }}>
-                                <FontAwesomeIcon icon={faBuilding} className={style.icon} />
-                                <div className={style.text}>Rooms</div>
-                            </Link>
-                            <Link to={'/management/roomTypes'}
-                                className={`${style.wrapper} ${chosen === 5 && style.chosen}`}
-                                onClick={() => { handleChosen(5) }}>
-                                <FontAwesomeIcon icon={faBuildingRegular} className={style.icon} />
-                                <div className={style.text}>Room types</div>
+                                <FontAwesomeIcon icon={faUser} className={style.icon} />
+                                <div className={style.text}>Customers</div>
                             </Link>
                         </div>}
                 </div>

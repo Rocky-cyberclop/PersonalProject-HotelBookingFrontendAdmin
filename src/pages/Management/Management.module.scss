@@ -4,7 +4,7 @@
   position: relative;
   .tableHeader {
     border-radius: 10px;
-    height: 80px;
+    height: 85px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -22,13 +22,32 @@
       position: relative;
       .calendar {
         border-radius: 10px;
-        padding: 10px;
+        background-color: aliceblue;
+        padding: 0 10px 10px 10px;
+        margin-right: 10px;
         .datePicker {
           background-color: aliceblue;
         }
       }
       .calendarText {
         margin-left: 10px;
+      }
+    }
+    .textInput {
+      margin-right: 20px;
+      padding: 10px;
+      border-radius: 10px;
+      width: 400px;
+      background-color: aliceblue;
+    }
+    .floorContainer {
+      display: flex;
+      align-items: center;
+      font-weight: bolder;
+      .floor {
+        margin: 0 10px 0 10px;
+        border-radius: 10px;
+        background-color: aliceblue;
       }
     }
   }

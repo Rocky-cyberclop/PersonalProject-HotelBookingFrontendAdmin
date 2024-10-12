@@ -8,7 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import style from '../Management.module.scss'
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import BasicModal from '../../../components/Modal';
 import dayjs from 'dayjs';
 import { Pagination } from '@mui/material';
@@ -26,7 +26,7 @@ export default function BookingManagement() {
             to: null,
             page: 1,
             pageSide: 10,
-            totalPage: 10
+            totalPage: 1
         }
     )
     useEffect(() => {
