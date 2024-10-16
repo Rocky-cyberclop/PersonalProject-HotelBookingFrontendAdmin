@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
-    const [user, setUser] = useState({ username: '', password: '' })
+    const [user, setUser] = useState({ email: '', password: '' })
     const navigate = useNavigate();
 
     const handleInputChange = (e) => {
@@ -19,7 +19,7 @@ function Login() {
     };
 
     const handleLogin = () => {
-        if (user.username.trim() === '') {
+        if (user.email.trim() === '') {
             toast.info('Username can not be blank!')
             return;
         }
@@ -29,21 +29,14 @@ function Login() {
         }
         const login = async () => {
             try {
-                const response = await axios.post(`http://localhost:8080/api/auth/admin`, user);
-                // navigate('/chooseRoom', {
-                //     state: {
-                //         token: response.data,
-                //         from: date.checkInDate,
-                //         to: date.checkOutDate,
-                //         room: room,
-                //         adults: adults
-                //     }
-                // }) 
+                const response = await axios.post(`http://localhost:8080/api/auth/login`, user);
+                if (response.data !== null) {
+                    localStorage.setItem('admin', response.data);
+                    toast.success('Login successfully!')
+                    navigate('/dashboard')
+                }
             } catch (error) {
-                localStorage.setItem('admin', 'some string')
-                navigate('/dashboard')
-                toast.success('Login successfully!')
-                console.error('Error fetching data:', error);
+                toast.error('Login failed! Something went wrong!')
                 return;
             }
         };
@@ -60,10 +53,10 @@ function Login() {
                 <div className={style.body}>
                     <div className={style.item}>
                         <TextField
-                            name='username'
+                            name='email'
                             label='Username'
                             fullWidth
-                            value={user.username}
+                            value={user.email}
                             onChange={handleInputChange} /></div>
                     <div className={style.item}>
                         <TextField
