@@ -16,7 +16,8 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 export default function BookingManagement() {
     const [data, setData] = useState([])
@@ -31,48 +32,35 @@ export default function BookingManagement() {
     )
     useEffect(() => {
         if (condition.from && condition.to) {
-            setData([...[
-                {
-                    email: 'rocky@gmail.com',
-                    come: '01-02-2024',
-                    go: '01-02-2024',
-                    total: 4,
-                    created: '01-02-2024',
-                    id: 1
-                },
-                {
-                    email: 'rocky@gmail.com',
-                    come: '01-02-2024',
-                    go: '01-02-2024',
-                    total: 4,
-                    created: '01-02-2024',
-                    id: 2
-                },
-                {
-                    email: 'rocky@gmail.com',
-                    come: '01-02-2024',
-                    go: '01-02-2024',
-                    total: 4,
-                    created: '01-02-2024',
-                    id: 3
-                },
-                {
-                    email: 'rocky@gmail.com',
-                    come: '01-02-2024',
-                    go: '01-02-2024',
-                    total: 4,
-                    created: '01-02-2024',
-                    id: 4
-                },
-                {
-                    email: 'rocky@gmail.com',
-                    come: '01-02-2024',
-                    go: '01-02-2024',
-                    total: 4,
-                    created: '01-02-2024',
-                    id: 5
-                },
-            ]])
+            const fetch = async () => {
+                try {
+                    const response = await axios.post(`http://localhost:8080/api/reservation/all`,
+                        {
+                            from: condition.from,
+                            to: condition.to,
+                            page: condition.page,
+                            size: condition.pageSide
+                        }
+                    );
+                    if (response.data !== null) {
+                        setData(response.data.map(item => {
+                            return {
+                                email: item.customerEmail,
+                                come: item.dateCome,
+                                go: item.dateGo,
+                                total: item.totalDate,
+                                created: item.createdAt,
+                                id: item._id
+                            }
+                        }))
+                    }
+                } catch (error) {
+                    console.log(error)
+                    toast.error('Could not fetch data! Something went wrong!')
+                    return;
+                }
+            };
+            fetch();
         }
     }, [condition.from, condition.to, condition.page])
 
