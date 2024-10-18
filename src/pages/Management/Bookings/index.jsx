@@ -26,7 +26,7 @@ export default function BookingManagement() {
             from: null,
             to: null,
             page: 1,
-            pageSide: 10,
+            pageSide: 5,
             totalPage: 1
         }
     )
@@ -43,7 +43,7 @@ export default function BookingManagement() {
                         }
                     );
                     if (response.data !== null) {
-                        setData(response.data.map(item => {
+                        setData(response.data.reservations.map(item => {
                             return {
                                 email: item.customerEmail,
                                 come: item.dateCome,
@@ -53,6 +53,7 @@ export default function BookingManagement() {
                                 id: item._id
                             }
                         }))
+                        setCondition(pre => ({ ...pre, totalPage: response.data.totalPage }))
                     }
                 } catch (error) {
                     console.log(error)

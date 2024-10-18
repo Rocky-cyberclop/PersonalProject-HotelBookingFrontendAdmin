@@ -5,6 +5,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import style from './Modal.module.scss';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const styleModal = {
     position: 'absolute',
@@ -26,6 +28,29 @@ export default function BasicModal({ id }) {
         {}
     );
     React.useEffect(() => {
+        const fetch = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8080/api/reservation/one/${id}`);
+                if (response.data !== null) {
+                    setData({
+                        email: response.data.customerEmail,
+                        come: response.data.dateCome,
+                        go: response.data.dateGo,
+                        total: response.data.totalDate,
+                        created: response.data.createdAt,
+                        id: id,
+                        guests: response.data.guests,
+                        rooms: response.data.rooms,
+                        payment: response.data.payment
+                    })
+                }
+            } catch (error) {
+                console.log(error)
+                toast.error('Could not fetch data! Something went wrong!')
+                return;
+            }
+        };
+        fetch();
         setData({
             email: 'rocky@gmail.com',
             come: '01-02-2024',
