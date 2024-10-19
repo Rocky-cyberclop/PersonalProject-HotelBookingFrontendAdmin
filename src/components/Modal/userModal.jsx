@@ -5,6 +5,8 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import style from './Modal.module.scss';
 import { TextField, Button } from '@mui/material';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const styleModal = {
     position: 'absolute',
@@ -21,38 +23,45 @@ const styleModal = {
 };
 
 export default function UserModal({ id }) {
+    const token = localStorage.getItem('admin')
     const [open, setOpen] = React.useState(false);
     const [data, setData] = React.useState(
         {}
     );
     React.useEffect(() => {
-        setData({
-            name: 'Rocky Operation',
-            email: 'rocky@gmail.com',
-            phone: '0355669359',
-            birth: '09-09-2002',
-            gender: 'Male',
-            address: 'Chau Thanh, Dong Thap',
-            nationality: 'Viet Nam',
-            reviews: [
-                {
-                    content: 'ok',
-                    date: '02-01-2024'
-                },
-                {
-                    content: 'ok',
-                    date: '02-01-2024'
-                },
-                {
-                    content: 'ok',
-                    date: '02-01-2024'
-                },
-                {
-                    content: 'ok',
-                    date: '02-01-2024'
+        const fetch = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8080/api/auth/one/${id}`,
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    }
+                );
+                if (response.data !== null) {
+                    setData({
+                        name: response.data.name,
+                        email: response.data.email,
+                        phone: response.data.phone,
+                        birth: response.data.dateOfBirth,
+                        gender: response.data.gender ? 'Male' : 'Female',
+                        address: response.data.address,
+                        nationality: response.data.nationality,
+                        reviews: response.data.review ? [
+                            {
+                                content: response.data.review.comment,
+                                date: response.data.review.date
+                            }
+                        ] : []
+                    })
                 }
-            ]
-        })
+            } catch (error) {
+                console.log(error)
+                toast.error('Could not fetch data! Something went wrong!')
+                return;
+            }
+        };
+        fetch();
     }, [])
 
 

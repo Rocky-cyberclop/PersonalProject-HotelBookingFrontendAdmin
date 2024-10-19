@@ -51,29 +51,6 @@ export default function BasicModal({ id }) {
             }
         };
         fetch();
-        setData({
-            email: 'rocky@gmail.com',
-            come: '01-02-2024',
-            go: '01-02-2024',
-            total: 4,
-            created: '01-02-2024',
-            id: 1,
-            guests: [{
-                name: "Hao",
-                email: "rocky@gmail.com",
-                phone: "0355669359"
-            }],
-            rooms: [
-                {
-                    number: 101,
-                    price: 400
-                }
-            ],
-            payment: {
-                amount: 1000,
-                date: "02-10-2024"
-            }
-        })
     }, [])
 
 

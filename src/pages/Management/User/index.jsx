@@ -11,6 +11,8 @@ import style from '../Management.module.scss'
 import { useState, useEffect } from 'react';
 import { Pagination, TextField } from '@mui/material';
 import UserModal from '../../../components/Modal/userModal';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 export default function UserManagement() {
     const [data, setData] = useState([])
@@ -22,39 +24,43 @@ export default function UserManagement() {
             totalPage: 1
         }
     )
+    const token = localStorage.getItem('admin')
+
     useEffect(() => {
-        if (condition.text !== '')
-            setData([...[
-                {
-                    id: '1',
-                    email: 'rocky@gmail.com',
-                    name: 'Tri Thuc',
-                    phone: '0355669359',
-                    address: 'soc Trang',
-                },
-                {
-                    id: '2',
-                    email: 'rocky@gmail.com',
-                    name: 'Tri Thuc',
-                    phone: '0355669359',
-                    address: 'soc Trang',
-                },
-                {
-                    id: '3',
-                    email: 'rocky@gmail.com',
-                    name: 'Tri Thuc',
-                    phone: '0355669359',
-                    address: 'soc Trang',
-                },
-                {
-                    id: '4',
-                    email: 'rocky@gmail.com',
-                    name: 'Tri Thuc',
-                    phone: '0355669359',
-                    address: 'soc Trang',
-                },
-            ]])
-    }, [condition.floor, condition.page, condition.text])
+        const delayDebounceFn = setTimeout(() => {
+            if (condition.text !== '') {
+                const fetch = async () => {
+                    try {
+                        const response = await axios.post(
+                            `http://localhost:8080/api/auth/all`,
+                            {
+                                ...condition,
+                                size: condition.pageSide
+                            },
+                            {
+                                headers: {
+                                    'Authorization': `Bearer ${token}`
+                                }
+                            }
+                        );
+                        if (response.data !== null) {
+                            setData(response.data.users);
+                            setCondition((prev) => ({
+                                ...prev,
+                                totalPage: response.data.totalPage
+                            }));
+                        }
+                    } catch (error) {
+                        console.log(error);
+                        toast.error('Could not fetch data! Something went wrong!');
+                    }
+                };
+                fetch();
+            }
+        }, 500); // 2 second delay
+
+        return () => clearTimeout(delayDebounceFn);
+    }, [condition.page, condition.text])
 
     return (
         <div className={style.table}>
@@ -96,7 +102,7 @@ export default function UserManagement() {
                                 <TableCell align="right">{row.phone}</TableCell>
                                 <TableCell align="right">{row.address}</TableCell>
                                 <TableCell align="right">
-                                    <UserModal id={row.id} />
+                                    <UserModal id={row._id} />
                                 </TableCell>
                             </TableRow>
                         ))}
