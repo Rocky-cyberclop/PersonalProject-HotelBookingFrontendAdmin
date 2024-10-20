@@ -68,7 +68,25 @@ export default function UserModal({ id }) {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const resetPassword = () => {
-        alert('clicked!')
+        const fetch = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8080/api/auth/admin/reset/pass/${id}`,
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    }
+                );
+                if (response.data !== null) {
+                    toast.success('Reseted passeword for this user!')
+                }
+            } catch (error) {
+                console.log(error)
+                toast.error('Could not fetch data! Something went wrong!')
+                return;
+            }
+        };
+        fetch();
     }
     return (
         <div>

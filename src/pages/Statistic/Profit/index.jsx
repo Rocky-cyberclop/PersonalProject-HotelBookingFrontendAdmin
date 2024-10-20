@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useState } from 'react'
 import Chart from 'react-apexcharts'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,6 +8,9 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { toast } from 'react-toastify';
+import axios from 'axios';
+import dayjs from 'dayjs';
 
 const ProfitStatistic = () => {
     const [condition, setCondition] = useState(
@@ -16,32 +20,36 @@ const ProfitStatistic = () => {
         }
     )
     const [data, setData] = useState([{ label: '', value: 0 }])
+    const token = localStorage.getItem('admin')
     useEffect(() => {
         if (condition.from && condition.to) {
-            setData([
-                { label: "01-01-2002", value: 50 },
-                { label: "01-01-2002", value: 40 },
-                { label: "01-01-2002", value: 300 },
-                { label: "01-01-2002", value: 320 },
-                { label: "01-01-2002", value: 500 },
-                { label: "01-01-2002", value: 350 },
-                { label: "01-01-2002", value: 200 },
-                { label: "01-01-2002", value: 230 },
-                { label: "01-01-2002", value: 500 },
-                { label: "01-01-2002", value: 500 },
-                { label: "01-01-2002", value: 500 },
-                { label: "01-01-2002", value: 500 },
-                { label: "01-01-2002", value: 500 },
-                { label: "01-01-2002", value: 500 },
-                { label: "01-01-2002", value: 500 },
-                { label: "01-01-2002", value: 500 },
-                { label: "01-01-2002", value: 500 },
-                { label: "01-01-2002", value: 500 },
-                { label: "01-01-2002", value: 500 },
-                { label: "01-01-2002", value: 500 },
-                { label: "01-01-2002", value: 500 },
-                { label: "01-01-2002", value: 500 },
-            ])
+            const fetch = async () => {
+                try {
+                    const response = await axios.post(
+                        `http://localhost:8080/api/reservation/statistic/profit`,
+                        {
+                            from: condition.from,
+                            to: condition.to,
+                            page: 1,
+                            szie: 1
+                        },
+                        {
+                            headers: {
+                                'Authorization': `Bearer ${token}`
+                            }
+                        }
+                    );
+                    if (response.data !== null) {
+                        setData(
+                            response.data.sort((a, b) =>
+                                new Date(a.label) - new Date(b.label)));
+                    }
+                } catch (error) {
+                    console.log(error);
+                    toast.error('Could not fetch data! Something went wrong!');
+                }
+            };
+            fetch();
         }
     }, [condition.from, condition.to])
     const chartsConfig = {
@@ -128,19 +136,19 @@ const ProfitStatistic = () => {
         },
     };
     const handleDateStart = (e) => {
-        if (condition.to && e > condition.to) {
-            setCondition({ from: e, to: null })
+        if (condition.to && dayjs(e).format('DD/MM/YYYY') > condition.to) {
+            setCondition({ from: dayjs(e).format('DD/MM/YYYY'), to: null })
         }
         else {
-            setCondition(pre => ({ ...pre, from: e }))
+            setCondition(pre => ({ ...pre, from: dayjs(e).format('DD/MM/YYYY') }))
         }
     }
     const handleDateEnd = (e) => {
-        if (e < condition.from) {
-            setCondition({ to: e, from: null })
+        if (dayjs(e).format('DD/MM/YYYY') < condition.from) {
+            setCondition({ to: dayjs(e).format('DD/MM/YYYY'), from: null })
         }
         else {
-            setCondition(pre => ({ ...pre, to: e }))
+            setCondition(pre => ({ ...pre, to: dayjs(e).format('DD/MM/YYYY') }))
         }
     }
     return (
@@ -153,8 +161,8 @@ const ProfitStatistic = () => {
                             <div className={style.filterLabel}>
                                 Choose a range of date:
                             </div>
-                            <DatePicker value={condition.from} label="Pick a date start" onChange={handleDateStart} />
-                            <DatePicker value={condition.to} label="Pick a date end" onChange={handleDateEnd} />
+                            <DatePicker label="Pick a date start" onChange={handleDateStart} />
+                            <DatePicker label="Pick a date end" onChange={handleDateEnd} />
                         </DemoContainer>
                     </LocalizationProvider>
                 </div>
