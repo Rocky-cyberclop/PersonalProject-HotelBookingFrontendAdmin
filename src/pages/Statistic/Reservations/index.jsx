@@ -116,7 +116,7 @@ const ReservationStatistic = () => {
         height: 400,
         series: [
             {
-                name: "Views",
+                name: "Reservations",
                 data: data.map(item => item.value),
             },
         ],
