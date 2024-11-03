@@ -1,9 +1,8 @@
 /* eslint-disable */
 import style from './Dashboard.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChartSimple, faCoins, faUserPlus, faUsers, faClock, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import { faChartSimple, faCoins, faUserPlus, faUsers, faClock } from '@fortawesome/free-solid-svg-icons';
 import Chart from 'react-apexcharts'
-import { DataGrid } from '@mui/x-data-grid';
 
 import xdlogo from '../../assets/images/logo-xd.svg';
 import alantic from '../../assets/images/logo-atlassian.svg';

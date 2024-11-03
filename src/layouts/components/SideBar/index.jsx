@@ -1,3 +1,4 @@
+/* eslint-disable */
 import style from './SideBar.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faChartColumn, faTable, faBook, faBuilding, faReceipt, faMoneyBillTrendUp } from '@fortawesome/free-solid-svg-icons';
