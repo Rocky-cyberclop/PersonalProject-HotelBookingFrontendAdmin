@@ -50,7 +50,7 @@ function SideBar() {
                                 <FontAwesomeIcon icon={faBook} className={style.icon} />
                                 <div className={style.text}>Bookings</div>
                             </Link>
-                            <Link to={'/management/users'}
+                            <Link to={'/management/customers'}
                                 className={`${style.wrapper} ${chosen === 4 && style.chosen}`}
                                 onClick={() => { handleChosen(4) }}>
                                 <FontAwesomeIcon icon={faUser} className={style.icon} />

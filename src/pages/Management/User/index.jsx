@@ -65,7 +65,7 @@ export default function UserManagement() {
     return (
         <div className={style.table}>
             <div className={style.tableHeader}>
-                <div className={style.tableHeaderText}>User List Table</div>
+                <div className={style.tableHeaderText}>Customer List Table</div>
                 <div className={style.floorContainer}>
                     <div className={style.textInput}>
                         <TextField

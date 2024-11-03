@@ -17,7 +17,7 @@ const publicRoute = [
 const privateRoute = [
     { path: 'dashboard', page: Dashboard, layout: MainLayout },
     { path: 'management/booking', page: BookingManagement, layout: MainLayout },
-    { path: 'management/users', page: UserManagement, layout: MainLayout },
+    { path: 'management/customers', page: UserManagement, layout: MainLayout },
     { path: 'statistic/profit', page: ProfitStatistic, layout: MainLayout },
     { path: 'statistic/reservation', page: ReservationStatistic, layout: MainLayout },
 ]
