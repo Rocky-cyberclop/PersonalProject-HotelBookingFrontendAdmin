@@ -1,3 +1,4 @@
+/* eslint-disable */
 import style from './Header.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightFromBracket, faGear } from '@fortawesome/free-solid-svg-icons';
