@@ -174,7 +174,7 @@ const ProfitStatistic = () => {
                         <div className={style.title}>Profit statistic</div>
                         <div className={style.description}>15% increase based on range of time</div>
                     </div>
-                    <div className={style.footer}><FontAwesomeIcon icon={faClock} />  updated 4 min ago</div>
+                    <div className={style.footer}><FontAwesomeIcon icon={faClock} />  updated 9 min ago</div>
                 </div>
             </div>
         </div>

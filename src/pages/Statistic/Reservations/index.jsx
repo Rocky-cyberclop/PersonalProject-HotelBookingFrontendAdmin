@@ -171,7 +171,7 @@ const ReservationStatistic = () => {
                         <Chart {...websiteViewsChart} />
                     </div>
                     <div className={style.header}>
-                        <div className={style.title}>Profit statistic</div>
+                        <div className={style.title}>Reservations statistic</div>
                         <div className={style.description}>15% increase based on range of time</div>
                     </div>
                     <div className={style.footer}><FontAwesomeIcon icon={faClock} />  updated 4 min ago</div>
